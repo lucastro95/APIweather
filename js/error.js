@@ -6,4 +6,5 @@ export function mostrarError(message) {
     alerta.classList.add('mensaje_error')
     alerta.innerText = message
     mostrarHTML(alerta)
+    return alerta
 }

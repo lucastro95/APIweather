@@ -1,20 +1,32 @@
-import { consultarAPI } from "./consultaAPI.js"
+import { consultarAPI } from "./consultaAPI.js";
+import { mostrarError } from "./error.js";
+import { limpiarHTML } from "./mostrarHTML.js";
 
-const formulario = document.querySelector('#formulario')
-const container = document.querySelector('.container')
+const formulario = document.querySelector("#formulario");
+const ciudad = document.querySelector("#ciudad");
+const pais = document.querySelector("#pais");
+const boton = document.querySelector("#boton");
 
-window.addEventListener('load', () => {
-    formulario.addEventListener('submit', buscarClima)
-})
+window.addEventListener("load", () => {
+  formulario.addEventListener("submit", buscarClima);
+});
 
 function buscarClima(e) {
-    e.preventDefault()
-    console.log('Buscando Clima');
-    const ciudad = document.querySelector('#ciudad').value
-    const pais = document.querySelector('#pais').value
+  e.preventDefault();
+  console.log("Buscando Clima");
+  const ciudad = document.querySelector("#ciudad").value;
+  const pais = document.querySelector("#pais").value;
 
-    const data = consultarAPI(ciudad, pais)
-    console.log(data);
+  if(!ciudad || !pais) {
+    const alerta = mostrarError('No se pueden enviar inputs vacíos')
+    setTimeout(() => {
+      limpiarHTML()
+    }, 5000)
+  } else {
+    const data = consultarAPI(ciudad, pais);
+  }
+
+  console.log(data);
 }
 /* 
 Validacion para que no envien input vacios 
