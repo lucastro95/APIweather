@@ -1,32 +1,23 @@
 import { mostrarHTML } from "./mostrarHTML.js"
 
 export function mostrarResultado(data) {
-    const temp = Math.round(parseInt(data.main.temp) - 273.15)
-    const temp_min = Math.round(parseInt(data.main.temp_min) - 273.15)
-    const temp_max = Math.round(parseInt(data.main.temp_max) - 273.15)
-    console.log(data);
-    let urlImg = ''
-    if (temp <= 5) {
-        urlImg = '../assets/snowflake.png'
-    } else if (temp > 5 && temp < 25) {
-        urlImg = '../assets/sun.png'
-    } else {
-        urlImg = '../assets/termometro.png'
-    }
+    const { main: {temp, temp_min, temp_max}, weather: [{icon, description}],  name} = data;
+
+    const temperatura = Math.round(parseInt(temp) - 273.15)
+    const tempmin = Math.round(parseInt(temp_min) - 273.15)
+    const tempmax = Math.round(parseInt(temp_max) - 273.15)
+
     const resultado = document.createElement('div')
     resultado.classList.add('mensaje_resultado')
     resultado.innerHTML = 
     `
-    <h1 class='ciudad'>${data.name}</h1>
-    <img src="${urlImg}" alt="">
-    <h1>${temp}°</h1>
+    <h1 class='ciudad'>${name}</h1>
+    <img src="http://openweathermap.org/img/wn/${icon}@2x.png" alt="">
+    <h1>${temperatura}°</h1>
     <div>
-        <p>${temp_max}°</p>
-        <p>${temp_min}°</p>
+        <p>${tempmax}°</p>
+        <p>${tempmin}°</p>
     </div>
     `
     mostrarHTML(resultado)
 }
-
-
-// temp, temp_max, temp_min

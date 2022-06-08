@@ -3,9 +3,6 @@ import { mostrarError } from "./error.js";
 import { limpiarHTML } from "./mostrarHTML.js";
 
 const formulario = document.querySelector("#formulario");
-const ciudad = document.querySelector("#ciudad");
-const pais = document.querySelector("#pais");
-const boton = document.querySelector("#boton");
 
 window.addEventListener("load", () => {
   formulario.addEventListener("submit", buscarClima);
@@ -25,8 +22,6 @@ function buscarClima(e) {
   } else {
     const data = consultarAPI(ciudad, pais);
   }
-
-  console.log(data);
 }
 /* 
 Validacion para que no envien input vacios 
