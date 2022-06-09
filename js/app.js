@@ -10,7 +10,6 @@ window.addEventListener("load", () => {
 
 function buscarClima(e) {
   e.preventDefault();
-  console.log("Buscando Clima");
   const ciudad = document.querySelector("#ciudad").value;
   const pais = document.querySelector("#pais").value;
 
@@ -20,7 +19,7 @@ function buscarClima(e) {
       limpiarHTML()
     }, 5000)
   } else {
-    const data = consultarAPI(ciudad, pais);
+    consultarAPI(ciudad, pais);
   }
 }
 /* 
